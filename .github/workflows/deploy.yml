@@ -1,0 +1,33 @@
+name: Deploy
+on:
+  workflow_dispatch:
+    inputs: { }
+  push:
+    branches:
+      - master
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Cloud SDK
+        uses: ./.github/workflows/cloud_auth
+        with:
+          gcp_token: ${{ secrets.GCR_TOKEN }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Build docs
+        run: npm run build
+      - name: Deploy assets
+        run: |
+          mkdir -p build
+          cp -rp build/* _docs
+          gsutil -h Cache-control:"public, max-age=31536000, immutable" cp -r _docs gs://hostfactor-assets

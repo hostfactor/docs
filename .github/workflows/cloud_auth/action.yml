@@ -1,0 +1,36 @@
+name: Cloud Auth
+description: Actions for authenticating for the cloud
+
+inputs:
+  gcp_token:
+    description: The token for the GCP account
+    required: true
+  project_id:
+    description: The GCP project ID
+    required: false
+    default: hostfactor-prod
+  deployment_regions:
+    description: GCP regions to deploy to separated by commas
+    default: us-west1-a
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Google Cloud Auth
+      uses: google-github-actions/auth@v1
+      with:
+        credentials_json: ${{ inputs.gcp_token }}
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: hostfactor-prod
+    - name: Add auth plugin
+      shell: bash
+      run: |
+        gcloud components install gke-gcloud-auth-plugin
+    - name: Add cluster creds
+      shell: bash
+      run: |
+        regions=${{inputs.deployment_regions}}
+        for region in $(echo ${regions//,/ }); do gcloud container clusters get-credentials prod-${region} --region ${region}; done

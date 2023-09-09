@@ -1,0 +1,39 @@
+---
+title: Expressive config and Terraria updates
+description: All apps now support multistep forms with realtime feedback
+slug: expressive-config
+authors: eddie
+tags: [ update, feature, terraria ]
+image: /img/blog/expressive-config/walking_path.png
+---
+
+Host Factor now supports realtime, multistep, and dynamic config for every app
+as well as Vanilla and Mobile servers for Terraria.
+
+<!--truncate-->
+
+Prior to this update, Host Factor would only allow for large blobs of [JSON schema](https://json-schema.org/)
+configuration. This static configuration was nice as a start but became limiting very quickly.
+
+For example, in Terraria users can configure to use a server with TShock or Vanilla. TShock servers would allow
+for mods while Vanilla would not. TShock also has additional config to be applied. This variation became a big
+problem because it meant users are not able to use plain old Vanilla Terraria servers (which is very common).
+
+To address this, I've given Blueprint Providers (small services that create apps for you to choose in Host Factor)
+the ability to provide multistep and realtime forms when updating/creating a new server. If you take the above case,
+after selecting Terraria, users are shown the `Server type` screen
+
+![Server type](/img/blog/expressive-config/server-type.png)
+
+When a user selects `Vanilla` they'll be shown the baseline server configuration options as opposed to the large
+amount of options that TShock offers.
+
+![Vanilla config](/img/blog/expressive-config/vanilla-config.png)
+
+Now Blueprint Providers have lots of expressive ways to present configuration to users. What's better is each provider
+can configure their forms with just a YAML file and a method implementation for realtime feedback. This makes it 
+trivial for Host Factor to add more streamlined and expressive config options in the future.
+
+## Terraria updates
+
+Because of the above changes, Host Factor is now able to support Vanilla and Mobile servers for Terraria.
