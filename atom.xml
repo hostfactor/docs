@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://docs.hostfactor.io/</id>
+    <title>Host Factor Blog</title>
+    <updated>2023-09-04T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://docs.hostfactor.io/"/>
+    <subtitle>Host Factor Blog</subtitle>
+    <icon>https://docs.hostfactor.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Expressive config and Terraria updates]]></title>
+        <id>https://docs.hostfactor.io/expressive-config</id>
+        <link href="https://docs.hostfactor.io/expressive-config"/>
+        <updated>2023-09-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[All apps now support multistep forms with realtime feedback]]></summary>
+        <content type="html"><![CDATA[<p>Host Factor now supports realtime, multistep, and dynamic config for every app
+as well as Vanilla and Mobile servers for Terraria.</p><p>Prior to this update, Host Factor would only allow for large blobs of <a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer">JSON schema</a>
+configuration. This static configuration was nice as a start but became limiting very quickly.</p><p>For example, in Terraria users can configure to use a server with TShock or Vanilla. TShock servers would allow
+for mods while Vanilla would not. TShock also has additional config to be applied. This variation became a big
+problem because it meant users are not able to use plain old Vanilla Terraria servers (which is very common).</p><p>To address this, I've given Blueprint Providers (small services that create apps for you to choose in Host Factor)
+the ability to provide multistep and realtime forms when updating/creating a new server. If you take the above case,
+after selecting Terraria, users are shown the <code>Server type</code> screen</p><p><img loading="lazy" alt="Server type" src="/assets/images/server-type-e8303aaad2ec5a74a3b5b8f15aa4e0ce.png" width="2076" height="350" class="img_ev3q"></p><p>When a user selects <code>Vanilla</code> they'll be shown the baseline server configuration options as opposed to the large
+amount of options that TShock offers.</p><p><img loading="lazy" alt="Vanilla config" src="/assets/images/vanilla-config-594eddc8d0540eb7ea48ab3cda910d6d.png" width="2076" height="416" class="img_ev3q"></p><p>Now Blueprint Providers have lots of expressive ways to present configuration to users. What's better is each provider
+can configure their forms with just a YAML file and a method implementation for realtime feedback. This makes it
+trivial for Host Factor to add more streamlined and expressive config options in the future.</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="terraria-updates">Terraria updates<a href="#terraria-updates" class="hash-link" aria-label="Direct link to Terraria updates" title="Direct link to Terraria updates">​</a></h2><p>Because of the above changes, Host Factor is now able to support Vanilla and Mobile servers for Terraria.</p>]]></content>
+        <author>
+            <name>Eddie</name>
+            <uri>https://twitter.com/hf_eddie</uri>
+        </author>
+        <category label="update" term="update"/>
+        <category label="feature" term="feature"/>
+        <category label="terraria" term="terraria"/>
+    </entry>
+</feed>

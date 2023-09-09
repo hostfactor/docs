@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkinfo_hostfactor_io=self.webpackChunkinfo_hostfactor_io||[]).push([[535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Expressive config and Terraria updates","permalink":"/expressive-config"}]}')}}]);

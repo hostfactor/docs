@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkinfo_hostfactor_io=self.webpackChunkinfo_hostfactor_io||[]).push([[228],{1959:o=>{o.exports=JSON.parse('{"permalink":"/tags/feature","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
