@@ -41,7 +41,7 @@ jobs:
         id: meta
         with:
           images: |
-            ${{ secrets.DOCKER_REGISTRY }}/website
+            ${{ secrets.DOCKER_REGISTRY }}/docservice
           tags: |
             type=sha
       - name: Docker build and push
@@ -51,7 +51,7 @@ jobs:
           push: true
           tags: |
             ${{ steps.meta.outputs.tags }}
-            ${{ secrets.DOCKER_REGISTRY }}/docs:latest
+            ${{ secrets.DOCKER_REGISTRY }}/docservice:latest
           secrets: |
             GITHUB_TOKEN=${{ secrets.GH_TOKEN }}
       - name: Setup kube
@@ -61,7 +61,7 @@ jobs:
       - name: Add secret
         working-directory: etc/kube
         run: |
-          ./kustomize edit set image ${{ secrets.DOCKER_REGISTRY }}/docs:${{ steps.meta.outputs.tags }}
+          ./kustomize edit set image ${{ secrets.DOCKER_REGISTRY }}/docservice:${{ steps.meta.outputs.tags }}
       - name: Dry run
         working-directory: etc/kube
         run: |
@@ -70,4 +70,4 @@ jobs:
         working-directory: etc/kube
         run: |
           ./kustomize build | ./kubectl apply -f -
-          ./kubectl -n website rollout restart deployment/docs
+          ./kubectl -n docservice rollout restart deployment/docservice
