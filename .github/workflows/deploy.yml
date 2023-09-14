@@ -6,9 +6,6 @@ on:
     branches:
       - master
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,10 +29,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Npm install and build
+      - name: Npm install
         run: |
-          npm install -f --legacy-peer-deps
-          npm run build
+          npm install
       - name: Setup metadata
         uses: docker/metadata-action@v3
         id: meta
@@ -52,8 +48,6 @@ jobs:
           tags: |
             ${{ steps.meta.outputs.tags }}
             ${{ secrets.DOCKER_REGISTRY }}/docservice:latest
-          secrets: |
-            GITHUB_TOKEN=${{ secrets.GH_TOKEN }}
       - name: Setup kube
         uses: ./.github/workflows/install_kube
         with:
