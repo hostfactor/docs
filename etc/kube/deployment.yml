@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: docs
+  name: docservice
   labels:
-    app: docs
+    app: docservice
 spec:
   replicas: 1
   template:
     metadata:
-      name: docs
+      name: docservice
       labels:
-        app: docs
+        app: docservice
     spec:
-      serviceAccountName: docs
+      serviceAccountName: docservice
       containers:
         - name: main
           image: image
@@ -37,4 +37,4 @@ spec:
       restartPolicy: Always
   selector:
     matchLabels:
-      app: docs
+      app: docservice
