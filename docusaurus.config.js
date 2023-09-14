@@ -11,10 +11,10 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://assets.hostfactor.io',
+  url: 'https://info.hostfactor.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/blog/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -39,7 +39,7 @@ const config = {
       ({
         docs: false,
         blog: {
-          routeBasePath: '/',
+          routeBasePath: '/blog',
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -59,67 +59,67 @@ const config = {
         defaultMode: 'light',
         disableSwitch: true,
       },
-      // navbar: {
-      //   title: 'Host Factor',
-      //   logo: {
-      //     alt: 'My Site Logo',
-      //     src: 'img/logo.svg',
-      //   },
-      //   items: [
-      //     {to: 'https://hostfactor.io', label: 'Site', position: 'left'},
-      //     {to: '/blog', label: 'Blog', position: 'left'},
-      //     {
-      //       href: 'https://github.com/hostfactor/docs',
-      //       label: 'GitHub',
-      //       position: 'right',
-      //     },
-      //   ],
-      // },
-      // footer: {
-      //   style: 'dark',
-      //   links: [
-      //     {
-      //       title: 'Host Factor',
-      //       items: [
-      //         {
-      //           label: 'Site',
-      //           href: 'https://hostfactor.io'
-      //         },
-      //         {
-      //           label: 'Apps',
-      //           href: 'https://hostfactor.io/apps'
-      //         }
-      //       ]
-      //     },
-      //     {
-      //       title: 'Community',
-      //       items: [
-      //         {
-      //           label: 'Discord',
-      //           href: 'https://discord.gg/TCkKNVAnEF',
-      //         },
-      //         {
-      //           label: 'Twitter',
-      //           href: 'https://twitter.com/hf_eddie',
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       title: 'More',
-      //       items: [
-      //         {
-      //           label: 'Blog',
-      //           to: '/blog',
-      //         },
-      //         {
-      //           label: 'GitHub',
-      //           href: 'https://github.com/hostfactor/docs',
-      //         },
-      //       ],
-      //     },
-      //   ],
-      //   copyright: `Copyright © ${new Date().getFullYear()} Host Factor, LLC.`,
-      // },
+      navbar: {
+        title: 'Host Factor',
+        logo: {
+          alt: 'My Site Logo',
+          src: 'img/logo.svg',
+        },
+        items: [
+          {to: 'https://hostfactor.io', label: 'Site', position: 'left'},
+          {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            href: 'https://github.com/hostfactor/docs',
+            label: 'GitHub',
+            position: 'right',
+          },
+        ],
+      },
+      footer: {
+        style: 'dark',
+        links: [
+          {
+            title: 'Host Factor',
+            items: [
+              {
+                label: 'Site',
+                href: 'https://hostfactor.io'
+              },
+              {
+                label: 'Apps',
+                href: 'https://hostfactor.io/apps'
+              }
+            ]
+          },
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'Discord',
+                href: 'https://discord.gg/TCkKNVAnEF',
+              },
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/hf_eddie',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              {
+                label: 'Blog',
+                to: '/blog',
+              },
+              {
+                label: 'GitHub',
+                href: 'https://github.com/hostfactor/docs',
+              },
+            ],
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} Host Factor, LLC.`,
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,

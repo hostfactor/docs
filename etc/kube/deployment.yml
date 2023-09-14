@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docs
+  labels:
+    app: docs
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: docs
+      labels:
+        app: docs
+    spec:
+      serviceAccountName: docs
+      containers:
+        - name: main
+          image: image
+          ports:
+            - containerPort: 3000
+              name: main
+          env:
+            - name: NODE_ENV
+              value: production
+          livenessProbe:
+            httpGet:
+              port: main
+              path: /
+          resources:
+            limits:
+              cpu: "500m"
+              memory: 384Mi
+            requests:
+              cpu: "500m"
+              memory: 384Mi
+
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: docs

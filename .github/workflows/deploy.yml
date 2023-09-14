@@ -16,6 +16,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          registry: gcr.io
+          username: _json_key
+          password: ${{ secrets.GCR_TOKEN }}
       - name: Set up Cloud SDK
         uses: ./.github/workflows/cloud_auth
         with:
@@ -23,13 +31,43 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-      - name: Install deps
-        run: npm install
-      - name: Build docs
-        run: npm run build
-      - name: Deploy assets
+          node-version: '18'
+      - name: Npm install and build
         run: |
-          mkdir -p _docs
-          cp -rp build/* _docs
-          gsutil -h Cache-control:"public, max-age=31536000, immutable" cp -r _docs gs://hostfactor-assets
+          npm install -f --legacy-peer-deps
+          npm run build
+      - name: Setup metadata
+        uses: docker/metadata-action@v3
+        id: meta
+        with:
+          images: |
+            ${{ secrets.DOCKER_REGISTRY }}/website
+          tags: |
+            type=sha
+      - name: Docker build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            ${{ secrets.DOCKER_REGISTRY }}/docs:latest
+          secrets: |
+            GITHUB_TOKEN=${{ secrets.GH_TOKEN }}
+      - name: Setup kube
+        uses: ./.github/workflows/install_kube
+        with:
+          install_directory: etc/kube
+      - name: Add secret
+        working-directory: etc/kube
+        run: |
+          ./kustomize edit set image ${{ secrets.DOCKER_REGISTRY }}/docs:${{ steps.meta.outputs.tags }}
+      - name: Dry run
+        working-directory: etc/kube
+        run: |
+          ./kustomize build | ./kubectl apply --dry-run=server -f -
+      - name: Apply
+        working-directory: etc/kube
+        run: |
+          ./kustomize build | ./kubectl apply -f -
+          ./kubectl -n website rollout restart deployment/docs

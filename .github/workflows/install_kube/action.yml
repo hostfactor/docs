@@ -1,0 +1,28 @@
+name: Install kubectl and kustomize
+description: Actions for installing kubectl and kustomize
+
+inputs:
+  install_directory:
+    description: The directory to install the CLI's
+    required: false
+    default: .
+  kubectl_version:
+    description: The version to install for Kubectl
+    required: false
+    default: "1.25.8"
+
+runs:
+  using: composite
+  steps:
+    - name: Install Kustomize
+      working-directory: ${{ inputs.install_directory }}
+      shell: bash
+      run: |
+        curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+        chmod +x kustomize
+    - name: Install Kubectl
+      working-directory: ${{ inputs.install_directory }}
+      shell: bash
+      run: |
+        curl -LO https://dl.k8s.io/release/v${{inputs.kubectl_version}}/bin/linux/amd64/kubectl
+        chmod +x kubectl

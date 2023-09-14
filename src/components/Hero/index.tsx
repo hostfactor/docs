@@ -1,5 +1,6 @@
 import React, {ReactElement, ReactNode} from 'react';
-import {Box, Button, Container, Heading, Stack, Text} from "@chakra-ui/react";
+import {Box, Button, Container, Heading, HStack, Link, Stack, Text} from "@chakra-ui/react";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 export interface HeroProps {
   title: string
@@ -37,25 +38,31 @@ export const Hero: React.FC<HeroProps> = (props: HeroProps): ReactElement | null
           <Text color={'gray.500'}>
             {subtitle}
           </Text>
-          <Stack
-            direction={'column'}
+          <HStack
             spacing={3}
             align={'center'}
             alignSelf={'center'}
             position={'relative'}
           >
-            <Button
-              colorScheme={'green'}
-              bg={'brand.800'}
-              rounded={'full'}
-              px={6}
+            <Link
+              href={`${useBaseUrl('/blog')}`}
               _hover={{
-                bg: 'brand.900',
+                textDecoration: 'none',
+                color: 'inherit',
               }}
             >
-              Get Started
-            </Button>
-          </Stack>
+              <Button
+                colorScheme={'blue'}
+                bg={'brand.800'}
+                _hover={{
+                  bg: 'brand.900',
+                }}
+                size={'lg'}
+              >
+                Blog
+              </Button>
+            </Link>
+          </HStack>
         </Stack>
       </Container>
     </>
