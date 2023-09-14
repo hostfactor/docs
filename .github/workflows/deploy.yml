@@ -55,7 +55,7 @@ jobs:
       - name: Add secret
         working-directory: etc/kube
         run: |
-          ./kustomize edit set image image=${{ secrets.DOCKER_REGISTRY }}/docservice:${{ steps.meta.outputs.tags }}
+          ./kustomize edit set image image=${{ steps.meta.outputs.tags }}
       - name: Dry run
         working-directory: etc/kube
         run: |
