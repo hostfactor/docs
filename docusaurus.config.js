@@ -31,6 +31,13 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  scripts: [
+    {
+      src: "https://plausible.io/js/script.js",
+      defer: true,
+      dataDomain: 'info.hostfactor.io'
+    }
+  ],
 
   presets: [
     [
