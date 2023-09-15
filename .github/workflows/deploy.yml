@@ -32,6 +32,9 @@ jobs:
       - name: Npm install
         run: |
           npm install
+      - name: Build docs
+        run: |
+          npm run build
       - name: Setup metadata
         uses: docker/metadata-action@v3
         id: meta

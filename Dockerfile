@@ -15,5 +15,6 @@ COPY ./package-lock.json ./package-lock.json
 COPY ./sidebars.js ./sidebars.js
 COPY ./tsconfig.json ./tsconfig.json
 COPY ./node_modules ./node_modules
+COPY build build
 
 CMD ["npm", "run", "serve"]
