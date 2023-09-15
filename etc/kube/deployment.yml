@@ -27,6 +27,11 @@ spec:
             httpGet:
               port: main
               path: /
+          readinessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              port: main
+              path: /
           resources:
             limits:
               cpu: "500m"
