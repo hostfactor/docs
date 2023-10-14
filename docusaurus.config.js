@@ -50,7 +50,7 @@ const config = {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/hostfactor/docs',
+          editUrl: 'https://github.com/hostfactor/docs/edit/master',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
